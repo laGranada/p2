@@ -13,9 +13,9 @@ import java.util.Scanner;
 /**
  * 
  * @author Stephanie Böhning
- * @version v.01
+ * @version v1.1
  * 
- * modified: 18.03.2016
+ * modified: 24.03.2016
  * 
  * This example should show you how to write data in files and read it from it.
  * Have fun!
@@ -88,7 +88,10 @@ public class MyFileIO {
 		return data;
 	}
 
-	
+	/**
+	 * This method writes the message to a file
+	 * @param message is the text which should be written.
+	 */
 	public void usePrintWriter (String message) {
 
 		try {
@@ -107,6 +110,10 @@ public class MyFileIO {
 		}
 	}
 	
+	/**
+	 * This method reads all data from a file which is set in the constructor.
+	 * @return String with the content of the file
+	 */
 	public String useScanner () {
 		String data = "";
 		Scanner scan;
@@ -125,6 +132,8 @@ public class MyFileIO {
 		return data;
 	}
 
+	
+	
 	public static void main(String[] args) {
 		MyFileIO file = new MyFileIO("UserData.txt");
 		String data = "";
@@ -135,11 +144,12 @@ public class MyFileIO {
 		data = file.useReaderStream();
 		System.out.println("In file:\n" + data);
 		
-		file.useWriterStream("Nickname: Kaulquappe");
+		file.usePrintWriter("Nickname: Kaulquappe");
 
-		data = file.useReaderStream();
+		data = file.useScanner();
 		System.out.println("In file:\n" + data);
-	
+
+		
 	}
 
 }
