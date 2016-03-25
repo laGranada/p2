@@ -45,7 +45,7 @@ public class ComplexLayout extends JFrame {
 		group.add(rbtn1);
 		group.add(rbtn2);
 		group.add(rbtn3);
-
+		
 		//feuge die RadioButton dem Panel1 hinzu
 		panel1.add(rbtn1);
 		panel1.add(rbtn2);
