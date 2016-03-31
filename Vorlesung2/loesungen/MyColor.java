@@ -18,9 +18,9 @@ import javax.swing.event.ChangeListener;
 /**
  * 
  * @author Stephanie Böhning
- * @version v1.0
+ * @version v1.1
  * 
- * modified: 21.03.2016
+ * modified: 31.03.2016
  */
 public class MyColor extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -32,8 +32,11 @@ public class MyColor extends JFrame{
 	private int green = 100;
 	private int red = 100;
 	private int blue = 100;
-	private Color color = new Color(red, green, blue);
+	protected Color color = new Color(red, green, blue);
 
+	JSlider redSlider = new JSlider(0, 255, color.getRed());
+	JSlider greenSlider = new JSlider(0, 255, color.getGreen());
+	JSlider blueSlider = new JSlider(0, 255, color.getBlue());
 	/**
 	 * 
 	 */
@@ -41,9 +44,6 @@ public class MyColor extends JFrame{
 		//create components
 
 		//the slider for each color
-		JSlider redSlider = new JSlider(0, 255, color.getRed());
-		JSlider greenSlider = new JSlider(0, 255, color.getGreen());
-		JSlider blueSlider = new JSlider(0, 255, color.getBlue());
 		
 		//the panel for each color
 		JPanel redPanel = new JPanel();
@@ -161,7 +161,28 @@ public class MyColor extends JFrame{
 
 		
 	}
-	
+
+	/**
+	 * This method sets a color and changes all depending values. This method is inserted because of the exercise 4.4
+	 * 
+	 * @param color
+	 */
+	protected void setColor (Color color) {
+		
+		//set rgb color numbers
+		blue = color.getBlue();
+		red = color.getRed();
+		green = color.getGreen();
+		this.color = color;
+		
+		//set slider
+		blueSlider.setValue(blue);
+		redSlider.setValue(red);
+		greenSlider.setValue(green);
+		
+		repaintPanel();
+	}
+
 	/**
 	 * This method repaints the color at the top of the frame
 	 */
