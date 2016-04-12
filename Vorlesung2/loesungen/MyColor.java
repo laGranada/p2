@@ -26,13 +26,13 @@ public class MyColor extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	//this components have to be created here because they are used in the listener or in methods
-	private JPanel northPanel = new JPanel();
+	private JPanel centerPanel = new JPanel();
 
 	//the values for each color		
 	private int green = 100;
 	private int red = 100;
 	private int blue = 100;
-	protected Color color = new Color(red, green, blue);
+	private Color color = new Color(red, green, blue);
 
 	JSlider redSlider = new JSlider(0, 255, color.getRed());
 	JSlider greenSlider = new JSlider(0, 255, color.getGreen());
@@ -63,9 +63,9 @@ public class MyColor extends JFrame{
 		JTextField blueField = new JTextField ("" + blueSlider.getValue(), 5);
 
 
-		northPanel.setBackground(color);
+		centerPanel.setBackground(color);
 		
-		add(northPanel, BorderLayout.CENTER);
+		add(centerPanel, BorderLayout.CENTER);
 		add(southPanel, BorderLayout.SOUTH);
 		southPanel.setLayout(new GridLayout(3, 1));
 		southPanel.add(redPanel);
@@ -98,6 +98,7 @@ public class MyColor extends JFrame{
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				red = redSlider.getValue();
+				color = new Color(red, color.getGreen(), color.getBlue());
 				redField.setText("" + red);
 				repaintPanel();
 			}
@@ -109,6 +110,7 @@ public class MyColor extends JFrame{
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				green = greenSlider.getValue();
+				color = new Color(color.getRed(), green, color.getBlue());
 				greenField.setText("" + green);
 				repaintPanel();
 			}
@@ -120,6 +122,7 @@ public class MyColor extends JFrame{
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				blue = blueSlider.getValue();
+				color = new Color(color.getRed(), color.getGreen(), blue);
 				blueField.setText("" +blue);
 				repaintPanel();
 			}
@@ -132,6 +135,7 @@ public class MyColor extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				red = Integer.valueOf(redField.getText());
+				color = new Color(red, color.getGreen(), color.getBlue());
 				redSlider.setValue(red);
 				repaintPanel();
 			}
@@ -143,6 +147,7 @@ public class MyColor extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				green = Integer.valueOf(greenField.getText());
+				color = new Color(color.getRed(), green, color.getBlue());
 				greenSlider.setValue(green);
 				repaintPanel();
 			}
@@ -154,6 +159,7 @@ public class MyColor extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				blue = Integer.valueOf(blueField.getText());
+				color = new Color(color.getRed(), color.getGreen(), blue);
 				blueSlider.setValue(blue);
 				repaintPanel();
 			}
@@ -162,6 +168,14 @@ public class MyColor extends JFrame{
 		
 	}
 
+	/**
+	 * This method return the color which is set
+	 * @return color of the background
+	 */
+	public Color getColor() {
+		return color;
+	}
+	
 	/**
 	 * This method sets a color and changes all depending values. This method is inserted because of the exercise 4.4
 	 * 
@@ -187,7 +201,7 @@ public class MyColor extends JFrame{
 	 * This method repaints the color at the top of the frame
 	 */
 	private void repaintPanel () {
-		northPanel.setBackground(new Color(red, green, blue));
+		centerPanel.setBackground(new Color(red, green, blue));
 		
 	}
 	
